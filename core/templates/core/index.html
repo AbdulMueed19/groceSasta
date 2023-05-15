@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block Title %}Welcome{% endblock %}
+
+{% block content %}
+<div  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for item in items %}
+    <a href="{% url 'items:detail' item.id %}" class="bg-white shadow-md rounded-lg overflow-hidden">
+      <img class="w-full h-64 object-cover" src="{{ item.image.url }}" alt="{{ item.name }}">
+      <div class="p-4">
+        <h3 class="font-semibold text-gray-700">{{ item.name }}</h3>
+        <p class="text-gray-500">${{ item.price }}</p>
+        <p class="text-gray-600">{{ item.description }}</p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

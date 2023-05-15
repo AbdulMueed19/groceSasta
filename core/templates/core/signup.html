@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block Title %}SignUp{% endblock %}
+{% block content %}
+  <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-gray-200 rounded-lg shadow-lg mx-auto p-3">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Sign up for an account
+        </h2>
+      </div>
+      <form class="w-full max-w-lg" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mb-4">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+              <small class="text-gray-600">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Sign up</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

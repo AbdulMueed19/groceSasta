@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block Title %}Create New Item{% endblock %}
+{% block content %}
+  <h1 class="mx-auto font-semibold text-2xl">Create New Item</h1>
+  <form method="post" action="." enctype="multipart/form-data" class="w-3/6 p-10 mx-auto items-center rounded-lg shadow-lg bg-gray-300">
+    {% csrf_token %}
+      <div>
+      <label for="{{ form.category.id_for_label }}">Category:</label><br>
+      {{ form.category }}
+    </div>
+    <div>
+      <label for="{{ form.name.id_for_label }}">Name:</label><br>
+      {{ form.name }}
+    </div>
+    <div>
+      <label for="{{ form.description.id_for_label }}">Description:</label><br>
+      {{ form.description }}
+    </div>
+    <div>
+      <label for="{{ form.price.id_for_label }}">Price:</label><br>
+      {{ form.price }}
+    </div>
+      <div>
+      <label for="{{ form.image.id_for_label }}">Image:</label><br>
+      {{ form.image }}
+    </div>
+    <button class="bg-gray-500 hover:bg-gray-800 rounded-sm my-3 p-3" type="submit">Create</button>
+  {% for error in field.errors %}
+              <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+            {% endfor %}
+  </form>
+{% endblock %}
